@@ -1,0 +1,65 @@
+﻿<Application x:Class="BCQueue.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:BCQueue.ViewModels"
+             xmlns:v="clr-namespace:BCQueue.Views"
+             xmlns:CPvm="clr-namespace:BCQueue.ViewModels.CreateProfileVM"
+             xmlns:CPv="clr-namespace:BCQueue.Views.CreateProfileViews"
+             xmlns:MMvm="clr-namespace:BCQueue.ViewModels.MainMenuVM"
+             xmlns:MMv="clr-namespace:BCQueue.Views.MainMenuViews"   
+             xmlns:local="clr-namespace:BCQueue"
+             StartupUri="Splash.xaml"
+             mc:Ignorable="d">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/ResourceDictionaries/Styles.xaml"/>
+                <ResourceDictionary>
+                    <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
+                    <CPvm:CPViewModelLocator x:Key="CPLocator" d:IsDataSource="True"/>
+                    <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+                        <v:HomeView />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type vm:StartViewModel}">
+                        <v:StartView />
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type CPvm:CPFirstViewModel}">
+                        <CPv:CPFirstView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type CPvm:CPSecondViewModel}">
+                        <CPv:CPSecondView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type CPvm:CPThirdViewModel}">
+                        <CPv:CPThirdView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type CPvm:CPEditPlayerViewModel}">
+                        <CPv:CPEditPlayerView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type CPvm:CPBaseViewModel}">
+                        <CPv:CPBaseView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type MMvm:MMAboutVM}">
+                        <MMv:MMAboutView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type MMvm:MMAddToQueueVM}">
+                        <MMv:MMAddToQueueView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type MMvm:MMConfigureClubProfileVM}">
+                        <MMv:MMConfigureClubProfileView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type MMvm:MMPlayerSignInVM}">
+                        <MMv:MMPlayerSignInView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type MMvm:MMViewActiveGamesVM}">
+                        <MMv:MMViewActiveGamesView/>
+                    </DataTemplate>
+                    <DataTemplate DataType="{x:Type MMvm:MMViewPlayerProfilesVM}">
+                        <MMv:MMViewPlayerProfileView/>
+                    </DataTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="BCQueue.Views.CreateProfileViews.CPEditPlayerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    <Viewbox Height="768" Width="1024" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Height="768" Width="1024">
+            <Button Content="Cancel" Command="{Binding CPNextPageCommand}" HorizontalAlignment="Left" Margin="762,713,0,0" VerticalAlignment="Top" Width="187" Height="55"/>
+            <Button Content="Save" Command="{Binding CPNextPageCommand}" HorizontalAlignment="Left" Margin="517,713,0,0" VerticalAlignment="Top" Width="187" Height="55"/>
+            <Label Content="First Name:" Grid.Row="0" FontSize="22" Margin="52,66,578,655" FontWeight="Bold"/>
+            <Label Content="Last Name:" Grid.Row="0" FontSize="22" Margin="517,66,113,655" FontWeight="Bold"/>
+            <TextBox Style="{StaticResource style1}" Margin="159,66,617,661" Text="{Binding NumColumnsText, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Style="{StaticResource style1}" Margin="622,66,154,661" Text="{Binding NumColumnsText, Delay=300, UpdateSourceTrigger=PropertyChanged}"/>
+
+        </Grid>
+    </Viewbox>
+</UserControl>

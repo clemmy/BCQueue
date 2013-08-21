@@ -1,0 +1,291 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:BCQueue;assembly=BCQueue"
+                    xmlns:resources="clr-namespace:BCQueue.Resources"
+                    xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop">
+    <!--Generic Styles Start-->
+    <Style TargetType="Label">
+        <Setter Property="FontFamily" Value="Agency FB"/>
+    </Style>
+    <Style TargetType="TextBox">
+        <Setter Property="FontFamily" Value="Agency FB"/>
+    </Style>
+    <!--Generic Styles End-->
+
+    <!--Base Styles Start-->
+    <Style x:Key="RemoveControlTemplate" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <UserControl Background="{TemplateBinding Background}">
+                        <ContentPresenter/>
+                    </UserControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="UserControl" x:Key="Normal">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/General/Background/backgroundStretchGray.jpg"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="MMMarginReduction" BasedOn="{StaticResource RemoveControlTemplate}">
+        <Setter Property="Margin" Value="80 0 80 0"/>
+    </Style>
+    <!--Base Styles End-->
+
+    <!--StartView Button Styles Start-->
+    <Style x:Key="LoadButton" TargetType="Button" BasedOn="{StaticResource RemoveControlTemplate}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/Start Menu/loadclub.png"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="CreateButton" TargetType="Button" BasedOn="{StaticResource RemoveControlTemplate}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/Start Menu/createclub.png"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--StartView Button Styles End-->
+
+    <!--HomeView Button Styles Start-->
+    <Style x:Key="ViewActiveGamesButton" TargetType="Button" BasedOn="{StaticResource MMMarginReduction}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/Main Menu/View Active Games.png" Stretch="Uniform"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="AddToQueueButton" TargetType="Button" BasedOn="{StaticResource MMMarginReduction}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/Main Menu/Add To Queue.png" Stretch="Uniform"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="PlayerSignInButton" TargetType="Button" BasedOn="{StaticResource MMMarginReduction}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/Main Menu/Player Sign-In.png" Stretch="Uniform"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ViewPPButton" TargetType="Button" BasedOn="{StaticResource MMMarginReduction}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/Main Menu/View Player Profile.png" Stretch="Uniform"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="ConfigureCPButton" TargetType="Button" BasedOn="{StaticResource MMMarginReduction}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/Main Menu/Configure Club Profile.png" Stretch="Uniform"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="AboutButton" TargetType="Button" BasedOn="{StaticResource MMMarginReduction}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/Main Menu/About.png" Stretch="Uniform"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--Home View Buttons End-->
+
+    <!--Home Button at the top right of all views stemming from the main menu-->
+    <Style x:Key="HomeButton" TargetType="Button" BasedOn="{StaticResource RemoveControlTemplate}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/Main Menu/Home.png" Stretch="Uniform"></ImageBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Width" Value="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}"/>
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="10"/>
+    </Style>
+
+    <!--Button style for the online/offline list of members in the PlayerSignInView-->
+    <Style TargetType="{x:Type Button}" x:Key="MemberSignInOutButton">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <UserControl Background="{TemplateBinding Background}" 
+                                 Height="{Binding Path=ActualWidth, RelativeSource={RelativeSource Self}}"
+                                 Margin="2">
+                        <ContentPresenter Grid.Row="1" TextBlock.FontFamily="Agency FB" HorizontalAlignment="Center" 
+                                          VerticalAlignment="Bottom"
+                                          TextBlock.FontSize="18" Margin="0 0 0 10"/>
+                    </UserControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <DataTemplate x:Key="PlayerEditTemplate">
+        <Grid Width="128" Height="40" Margin="5">
+            <Rectangle Fill="#403B3C" Stroke="Black" StrokeThickness="2" RadiusX="6" RadiusY="6" Height="40" Width="128" Grid.ColumnSpan="2"/>
+            <Viewbox Grid.Column="1">
+                <Label HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding FullName}" FontFamily="Agency FB" 
+                           FontSize="24" Foreground="White"/>
+            </Viewbox>
+        </Grid>
+    </DataTemplate>
+
+    <!--style for validation purposes in the CP Views-->
+    <Style TargetType="{x:Type TextBox}" x:Key="style1">
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel LastChildFill="true">
+                        <Border Background="Red" DockPanel.Dock="right" Margin="5,0,0,0" Width="20" Height="20" CornerRadius="10"
+                                    ToolTip="{Binding ElementName=customAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
+                            <TextBlock Text="!" VerticalAlignment="center" HorizontalAlignment="center" FontWeight="Bold" Foreground="white">
+                            </TextBlock>
+                        </Border>
+                        <AdornedElementPlaceholder Name="customAdorner" VerticalAlignment="Center" >
+                            <Border BorderBrush="red" BorderThickness="1" />
+                        </AdornedElementPlaceholder>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontFamily" Value="Sergoe UI"/>
+    </Style>
+
+
+    <Style x:Key="timerButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <UserControl Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center"/>
+                    </UserControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+
+    <!--Data Template for the Courts in ViewActiveGamesView.xaml-->
+    <DataTemplate x:Key="CourtControlTemplate">
+        <UserControl Width="300" Height="300" Background="#CADEE3" x:Name="CourtControl">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="{Binding CourtNumber}" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" FontSize="48"/>
+                <TextBlock Grid.Row="2" Text="00:20:00" Background="White" 
+                                               HorizontalAlignment="Center" FontSize="36"
+                                               VerticalAlignment="Center" Padding="10 0 10 0"/>
+                <Button Style="{StaticResource timerButton}" Grid.Row="3" Content="Finish"
+                                            VerticalAlignment="Center" FontSize="36"
+                                            Background="Gray" Width="{Binding ElementName=CourtControl, Path=ActualWidth}"
+                                            HorizontalAlignment="Center"/>
+                <Border Grid.RowSpan="4" BorderBrush="White" BorderThickness="1 0 0 0"/>
+            </Grid>
+        </UserControl>
+    </DataTemplate>
+
+    <!--Start: For use in the AddToQueue.xaml-->
+
+    <!--Start: Makes a ListBox's appearance mirror that of an ItemsControl-->
+    
+    <!--needed for Windows 8-->
+    <Style x:Key="ItemsControlBehaviour" TargetType="ListBoxItem">
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Selector.IsSelectionActive" Value="True" />
+                    <Condition Property="IsSelected" Value="True" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+    <!--End: ListBox's appearance mirroring that of an ItemsControl-->
+
+    <resources:Converter x:Key="SkillLeveltoColourCoverter"/>
+
+    <DataTemplate x:Key="PlayerTemplate">
+        <Grid Width="250" Height="50" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.15*"/>
+                <ColumnDefinition Width="0.85*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Fill="#403B3C" Stroke="Black" StrokeThickness="2" RadiusX="10" RadiusY="10" Height="50" Width="250" Grid.ColumnSpan="2"/>
+            <Viewbox Grid.Column="1">
+                <Label Name="MyLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding FirstName}" FontFamily="Agency FB" 
+                           FontSize="30" Foreground="White"/>
+            </Viewbox>
+            <Ellipse Fill="{Binding SkillLevel, Converter={StaticResource SkillLeveltoColourCoverter},Mode=OneWay}" Height="15" Width="15" 
+                         VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+    </DataTemplate>
+   
+
+    <Style TargetType="ListBox" x:Key="AvailableForDragInto">
+        <Setter Property="ItemTemplate" Value="{StaticResource PlayerTemplate}"/>
+        <Setter Property="dd:DragDrop.IsDragSource" Value="True"/>
+        <Setter Property="dd:DragDrop.IsDropTarget" Value="True"/>
+        <Setter Property="dd:DragDrop.DragAdornerTemplate" Value="{StaticResource PlayerTemplate}"/>
+        <Setter Property="dd:DragDrop.DropHandler" Value="{Binding}"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <ItemsPresenter/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="HasItems" Value="false">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Grid>
+                                <Rectangle Fill="#E6E1E2" StrokeDashArray="4" Stroke="Black" StrokeThickness="2" 
+                                               RadiusX="10" RadiusY="10" Height="65" Width="275"/>
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                               Content="Drag player here!" 
+                                               TextBlock.FontFamily="Agency FB" TextBlock.FontSize="32"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <ItemsPanelTemplate x:Key="WrapPanelTemplate">
+        <WrapPanel/>
+    </ItemsPanelTemplate>
+    <ItemsPanelTemplate x:Key="StackPanelTemplate">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </ItemsPanelTemplate>
+    
+    <Style TargetType="Button" x:Key="AddButton" BasedOn="{StaticResource RemoveControlTemplate}">
+        <Setter Property="Background">
+            <Setter.Value>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/Main Menu/InsideViews/AddToQueue.png" Stretch="Fill"/>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Margin" Value="70 40 70 20"/>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+    <!--End: For use in the AddToQueue.xaml-->
+</ResourceDictionary>

@@ -1,0 +1,18 @@
+﻿<Window x:Class="BCQueue.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Height="768" Width="1366" WindowStyle="None" ResizeMode="NoResize" 
+        WindowState="Maximized" Topmost="False"  mc:Ignorable="d"
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+        <ContentControl Content="{Binding CurrentViewModel}" Grid.RowSpan="2"/>
+        <Button x:Name="HomeButton" Cursor="Hand" Style="{StaticResource HomeButton}" Visibility="{Binding HomeButtonVisibility, Mode=TwoWay}" Command="{Binding HomeViewCommand}"/>
+        
+    </Grid>
+</Window>

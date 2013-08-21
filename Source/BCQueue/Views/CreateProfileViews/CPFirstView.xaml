@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="BCQueue.Views.CreateProfileViews.CPFirstView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+
+    <Viewbox Height="768" Width="1024" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Height="768" Width="1024">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="384"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Content="Name of Club:" Grid.Row="0" FontSize="22" FontWeight="Bold" Margin="-5,10,876,330"/>
+            <Label Content="Number of Courts" Grid.Row="0" FontSize="22" Margin="-5,175,816,164" FontWeight="Bold"/>
+            <Label Content="Number of Columns:" Grid.Row="0" FontSize="22" Margin="425,260,172,77" FontWeight="Bold"/>
+            <Label Content="Number of Rows:" Grid.Row="0" FontSize="22" Margin="-5,260,635,77" FontWeight="Bold"/>
+            <Label Content="Time Allowed to Play on Court:" Grid.Row="1" FontSize="22" Margin="-5,47,687,293" FontWeight="Bold"/>
+            <Label Content="min" Grid.Row="1" FontSize="22" Margin="370,50,590,290" FontWeight="Bold"/>
+
+            <TextBox Style="{StaticResource style1}" Margin="0,80,551,262" Text="{Binding ClubNameText, UpdateSourceTrigger=PropertyChanged, Delay=300}"/>
+            <TextBox Style="{StaticResource style1}" Margin="151,260,776,83" Text="{Binding NumRowsText, UpdateSourceTrigger=PropertyChanged, Delay=300}"/>
+            <TextBox Style="{StaticResource style1}" Margin="604,260,332,83" Text="{Binding NumColumnsText, UpdateSourceTrigger=PropertyChanged, Delay=300}"/>
+            <TextBox Style="{StaticResource style1}" Margin="251,50,676,293" Grid.Row="1" Text="{Binding TimerValueText, UpdateSourceTrigger=PropertyChanged, Delay=300}"/>
+            
+            <Button Content="Next" Command="{Binding CPNextPageCommand}" HorizontalAlignment="Left" Margin="762,329,0,0" Grid.Row="1" VerticalAlignment="Top" Width="187" Height="55"/>
+            
+        </Grid>
+    </Viewbox>
+
+
+</UserControl>

@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="BCQueue.Views.CreateProfileViews.CPThirdView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1024">
+    
+    <Viewbox Height="768" Width="1024" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Height="768" Width="1024">
+            <Label Content="CPThirdView" FontSize="60" HorizontalAlignment="Left" Margin="384,360,0,0" VerticalAlignment="Top" Height="110" Width="450"/>
+            <Button Content="Finish" Command="{Binding CPNextPageCommand}" HorizontalAlignment="Left" Margin="762,713,0,0" VerticalAlignment="Top" Width="187" Height="55"/>
+            <Button Content="Back" Command="{Binding CPPreviousPageCommand}" HorizontalAlignment="Left" Margin="513,713,0,0" VerticalAlignment="Top" Width="187" Height="55"/>
+        </Grid>
+    </Viewbox>
+</UserControl>

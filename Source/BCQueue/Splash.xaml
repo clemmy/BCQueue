@@ -1,0 +1,19 @@
+﻿<Window x:Class="BCQueue.splash"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="splash" Height="270" Width="500" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        WindowStyle="None">
+    <Viewbox>
+        <Grid Height="270" Width="500" MouseDown="SplashScreenClicked">
+            <Grid.Background>
+                <ImageBrush ImageSource="/BCQueue;component/Resources/Images/General/Background/backgroundStretchGray.jpg"/>
+            </Grid.Background>
+            <Image Source="/BCQueue;component/Resources/Images/General/Logo/bcqueuelogo.png"/>
+            <Label Content="Click anywhere to continue..." Margin="280 210 20 20" FontSize="14"/>
+        </Grid>
+    </Viewbox>
+
+</Window>

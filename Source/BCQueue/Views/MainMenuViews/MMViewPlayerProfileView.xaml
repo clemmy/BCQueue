@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="BCQueue.Views.MainMenuViews.MMViewPlayerProfileView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="768" d:DesignWidth="1366"
+             Style="{StaticResource Normal}">
+    <Viewbox>
+        <Grid Height="768" Width="1366">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.41*"/>
+                <RowDefinition Height="0.27*"/>
+                <RowDefinition Height="0.32*"/>
+            </Grid.RowDefinitions>
+            <Grid Name="ProfileRow1" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.3*"/>
+                    <RowDefinition Height="0.23*"/>
+                    <RowDefinition Height="0.23*"/>
+                    <RowDefinition Height="0.23*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.ColumnSpan="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Name: " Margin="140 5 0 0" FontSize="70" Grid.Column="0"/>
+                    <TextBox Name="NameBox" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="315 20 0 10" FontSize="50" Text="{Binding NameBoxText}"/>
+                    <Button FontFamily="Agency FB"  FontSize="50" Content=" Go" Grid.Column="2" HorizontalAlignment="Left" 
+                            Height="{Binding ElementName=NameBox, Path=ActualHeight}" 
+                            Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" 
+                            Margin="0 10 0 0" Style="{StaticResource RemoveControlTemplate}"
+                            Command="{Binding SearchMembersCommand}"/>
+                </Grid>
+                
+                
+                <Label Content="Gender: " Margin="160 0 0 0" FontSize="40" Grid.Row="1" Grid.Column="0"/>
+                <Label FontSize="40" Grid.Row="1" Grid.Column="1" Content="{Binding GenderLabelText}"/>
+                
+                <Label Content="Skill Level: " Margin="160 0 0 0" FontSize="40" Grid.Row="2" Grid.Column="0"/>
+                <Label FontSize="40" Grid.Row="2" Grid.Column="1" Content="{Binding SkillLevelLabelText}"/>
+                
+                <Label Content="Preferred Discipline: " Margin="160 0 0 0" FontSize="40" Grid.Row="3" Grid.Column="0"/>
+                <Label FontSize="40" Grid.Row="3" Grid.Column="1" Content="{Binding PreferredDisciplineLabelText}"/>
+            </Grid>
+
+            <Grid Name="ProfileRow2" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.4*"/>
+                    <ColumnDefinition Width="0.6*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Content="Games Won: " Margin="160 0 0 0" FontSize="40" Grid.Row="0" Grid.Column="0"/>
+                <Label FontSize="40" Grid.Row="0" Grid.Column="1" Content="{Binding GamesWonLabelText}"/>
+                
+                <Label Content="Games Lost: " Margin="160 0 0 0" FontSize="40" Grid.Row="1" Grid.Column="0"/>
+                <Label FontSize="40" Grid.Row="1" Grid.Column="1" Content="{Binding GamesLostLabelText}"/>
+                
+                <Label Content="Total Games: " Margin="160 0 0 0" FontSize="40" Grid.Row="2" Grid.Column="0"/>
+                <Label FontSize="40" Grid.Row="2" Grid.Column="1" Content="{Binding TotalGamesLabelText}"/>
+            </Grid>
+
+            <Grid Name="ProfileRow3" Grid.Row="2">
+                <StackPanel>
+                    <Label Content="About Me: " Margin="160 0 0 0" FontSize="45"/>
+                    <ScrollViewer Margin="150 10 300 0">
+                        <TextBlock Height="150" FontSize="18" FontFamily="Agency FB" Background="White" Text="{Binding AboutMeText}"/>
+                    </ScrollViewer>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</UserControl>

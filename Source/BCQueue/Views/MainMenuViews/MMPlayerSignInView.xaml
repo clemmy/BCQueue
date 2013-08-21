@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="BCQueue.Views.MainMenuViews.MMPlayerSignInView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Style="{StaticResource Normal}"
+             d:DesignHeight="768" d:DesignWidth="1366">
+    <Viewbox>
+        <Grid Height="768" Width="1366">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.7*"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer Grid.Row="1" Background="White" Margin="15" VerticalScrollBarVisibility="Auto">
+                <!--Note: DataContext set in code-behind-->
+                <ItemsControl x:Name="MembersSignInList" ItemsSource="{Binding}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid IsItemsHost="True" Columns="9" VerticalAlignment="Top"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource MemberSignInOutButton}" Tag="{Binding}" Content="{Binding FullName}" Click="MemberClicked"
+                                    Background="{DynamicResource offline}" Initialized="Button_Initialized">
+                                <Button.Resources>
+                                    <ImageBrush x:Key="offline" 
+    ImageSource="/BCQueue;component/Resources/Images/General/Status/offline.png"/>
+                                    <ImageBrush x:Key="online" 
+    ImageSource="/BCQueue;component/Resources/Images/General/Status/online.png"/>
+                                </Button.Resources>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            
+        </Grid>
+    </Viewbox>
+</UserControl>
