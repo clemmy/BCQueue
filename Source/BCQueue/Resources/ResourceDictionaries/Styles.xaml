@@ -229,7 +229,7 @@
             </Grid.ColumnDefinitions>
             <Rectangle Fill="#403B3C" Stroke="Black" StrokeThickness="2" RadiusX="10" RadiusY="10" Height="50" Width="250" Grid.ColumnSpan="2"/>
             <Viewbox Grid.Column="1">
-                <Label Name="MyLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding FirstName}" FontFamily="Agency FB" 
+                <Label Name="MyLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding FullName}" FontFamily="Agency FB" 
                            FontSize="30" Foreground="White"/>
             </Viewbox>
             <Ellipse Fill="{Binding SkillLevel, Converter={StaticResource SkillLeveltoColourCoverter},Mode=OneWay}" Height="15" Width="15" 

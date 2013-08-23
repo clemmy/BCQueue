@@ -19,6 +19,10 @@ namespace BCQueue.Views.MainMenuViews
     /// </summary>
     public partial class MMViewActiveGamesView : UserControl
     {
+        /// <summary>
+        /// Sets the datacontext to allow binding to work properly in the active games view
+        /// Sets the items source to allow the Queue List to display properly
+        /// </summary>
         public MMViewActiveGamesView()
         {
             InitializeComponent();
@@ -27,6 +31,7 @@ namespace BCQueue.Views.MainMenuViews
                 CourtsControl.DataContext = (App.Current.Resources["Locator"] as BCQueue.ViewModels.ViewModelLocator).Main.MyProfile;
                 
             }
+            QueueList.ItemsSource = BCQueue.ViewModels.MainViewModel._mMAddToQueueVM.QueueList;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

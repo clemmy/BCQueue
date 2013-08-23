@@ -42,13 +42,13 @@
                                   Style="{StaticResource AvailableForDragInto}"
                                   Grid.Row="1" Grid.Column="0" x:Name="Player1"
                                   ItemContainerStyle="{StaticResource ItemsControlBehaviour}"/>
-                <ListBox ItemsPanel="{StaticResource StackPanelTemplate}" ItemsSource="{Binding Player2}"
-                                  Style="{StaticResource AvailableForDragInto}" 
-                                  Grid.Row="1" Grid.Column="1" x:Name="Player2"
-                                  ItemContainerStyle="{StaticResource ItemsControlBehaviour}"/>
                 <ListBox ItemsPanel="{StaticResource StackPanelTemplate}" ItemsSource="{Binding Player3}"
                                   Style="{StaticResource AvailableForDragInto}" 
-                                  Grid.Row="2" Grid.Column="0" x:Name="Player3"
+                                  Grid.Row="1" Grid.Column="1" x:Name="Player3"
+                                  ItemContainerStyle="{StaticResource ItemsControlBehaviour}"/>
+                <ListBox ItemsPanel="{StaticResource StackPanelTemplate}" ItemsSource="{Binding Player2}"
+                                  Style="{StaticResource AvailableForDragInto}" 
+                                  Grid.Row="2" Grid.Column="0" x:Name="Player2"
                                   ItemContainerStyle="{StaticResource ItemsControlBehaviour}"/>
                 <ListBox ItemsPanel="{StaticResource StackPanelTemplate}" ItemsSource="{Binding Player4}"
                                   Style="{StaticResource AvailableForDragInto}" 
@@ -57,7 +57,7 @@
             </Grid>
 
 
-            <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource AddButton}"/>
+            <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource AddButton}" Command="{Binding AddToQueueCommand}"/>
             <Image Source="/BCQueue;component/Resources/Images/Titles/addtoq.png" VerticalAlignment="Center"
                    Margin="5 30 0 0" HorizontalAlignment="Left"/>
 

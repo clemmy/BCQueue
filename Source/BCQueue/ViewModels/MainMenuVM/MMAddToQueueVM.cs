@@ -16,35 +16,26 @@ namespace BCQueue.ViewModels.MainMenuVM
         /// <summary>
         /// List of players who are currently waiting on the queue; Will be displayed in the Active Games view
         /// </summary>
-        public ObservableCollection<ObservableCollection<Member>> QueueList;
+        public ObservableCollection<ObservableCollection<ObservableCollection<Member>>> QueueList;
 
         /// <summary>
         /// List of players who are not in any active games nor waiting on the queue
         /// </summary>
         public ObservableCollection<Member> AvailablePool { get; set; }
 
-        /// <summary>
-        /// Each one of these ObservableCollections should logically only hold 1 Member object.
-        /// The code is written this way as a workaround for the limitations of gong-wpf's drag'n'drop library.
-        /// This will likely be changed in the future.
-        /// </summary>
+
+        /* 
+         * Each one of these ObservableCollections should logically only hold 1 Member object.
+         * The code is written this way as a workaround for the limitations of gong-wpf's drag'n'drop library.
+         * This will likely be changed in the future.
+         */
+
         public ObservableCollection<Member> Player1 { get; set; }
         public ObservableCollection<Member> Player2 { get; set; }
         public ObservableCollection<Member> Player3 { get; set; }
         public ObservableCollection<Member> Player4 { get; set; }
 
-        /// <summary>
-        /// This constructor initializes all the ObservableCollection properties in the ViewModel to new, empty ones
-        /// </summary>
-        public MMAddToQueueVM()
-        {
-            AvailablePool = new ObservableCollection<Member>();
-            Player1 = new ObservableCollection<Member>();
-            Player2 = new ObservableCollection<Member>();
-            Player3 = new ObservableCollection<Member>();
-            Player4 = new ObservableCollection<Member>();
-        }
-
+        #region drop handlers
         /// <summary>
         /// Similar to the default except it doesn't allow drop when IsDraggedIntoQueue is true
         /// </summary>
@@ -118,6 +109,84 @@ namespace BCQueue.ViewModels.MainMenuVM
                 return true;
             else
                 return false;
+        }
+        #endregion
+
+        public ICommand AddToQueueCommand { get; private set; }
+
+        private void ExecuteAddToQueueCommand()
+        {
+            ObservableCollection<Member> temp = new ObservableCollection<Member>();
+            
+            //This condition indicates that a doubles games or singles game will occur
+            if ((GetTeam1().Count==GetTeam2().Count)&&GetTeam1().Count!=0)
+            {
+                ObservableCollection<ObservableCollection<Member>> group = new ObservableCollection<ObservableCollection<Member>>();//add both
+                group.Add(GetTeam1());
+                group.Add(GetTeam2());
+                
+                Player1.Clear();
+                Player2.Clear();
+                Player3.Clear();
+                Player4.Clear();
+                QueueList.Add(group);
+            }
+            else
+            {
+                MessageBox.Show("A game must consist of either 2 or 4 players.");
+            }
+
+        }
+
+        /// <summary>
+        /// Returns an ObservableCollection of Team1 (players 1 and 2)
+        /// </summary>
+        /// <returns>ObservableCollection of Team1 (players 1 and 2)</returns>
+        private ObservableCollection<Member> GetTeam1()
+        {
+            ObservableCollection<Member> temp = new ObservableCollection<Member>();
+            if (Player1.Count>0)
+            {
+                temp.Add(Player1[0]);
+            }
+            if (Player2.Count>0)
+            {
+                temp.Add(Player2[0]);
+            }
+            return temp;
+        }
+
+        /// <summary>
+        /// Returns an ObservableCollection of Team2 (players 3 and 4)
+        /// </summary>
+        /// <returns>ObservableCollection of Team2 (players 3 and 4)</returns>
+        private ObservableCollection<Member> GetTeam2()
+        {
+            ObservableCollection<Member> temp = new ObservableCollection<Member>();
+            if (Player3.Count>0)
+            {
+                temp.Add(Player3[0]);
+            }
+            if (Player4.Count>0)
+            {
+                temp.Add(Player4[0]);
+            }
+            return temp;
+        }
+
+        /// <summary>
+        /// This constructor initializes all the ObservableCollection properties in the ViewModel to new, empty ones
+        /// </summary>
+        public MMAddToQueueVM()
+        {
+            AvailablePool = new ObservableCollection<Member>();
+            Player1 = new ObservableCollection<Member>();
+            Player2 = new ObservableCollection<Member>();
+            Player3 = new ObservableCollection<Member>();
+            Player4 = new ObservableCollection<Member>();
+            QueueList = new ObservableCollection<ObservableCollection<ObservableCollection<Member>>>();
+            AddToQueueCommand = new RelayCommand(() => ExecuteAddToQueueCommand());
+
         }
     }
 }

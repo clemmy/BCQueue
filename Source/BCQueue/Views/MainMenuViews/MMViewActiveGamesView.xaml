@@ -16,7 +16,8 @@
                 <RowDefinition Height="0.2*"/>
                 <RowDefinition Height="0.8*"/>
             </Grid.RowDefinitions>
-            <ScrollViewer Height="614" MaxWidth="1093" Background="White" HorizontalScrollBarVisibility="Auto"
+            <Image Source="/BCQueue;component/Resources/Images/Titles/activeg.png" HorizontalAlignment="Left" Margin="5 20 0 0"/>
+            <ScrollViewer Height="614" MaxWidth="950" Background="White" HorizontalScrollBarVisibility="Auto"
                       VerticalScrollBarVisibility="Auto"
                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
                       Grid.Row="1" Grid.Column="0">
@@ -31,7 +32,20 @@
                     </ItemsControl>
                 </Grid>
             </ScrollViewer>
-            <Label Grid.Column="1" Content="Queue" FontSize="40"/>
+            <Grid Grid.Column="1" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.15*"/>
+                    <RowDefinition Height="0.85*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Queue" HorizontalAlignment="Left" FontSize="48" Margin="30 0 0 0"/>
+                <ScrollViewer Grid.Row="1">
+                    <!--ItemsSource is set in code-behind-->
+                    <ItemsControl x:Name="QueueList">
+                        
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+            
         </Grid>
     </Viewbox>
 </UserControl>
