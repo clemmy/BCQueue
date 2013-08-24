@@ -21,25 +21,34 @@
                       VerticalScrollBarVisibility="Auto"
                       HorizontalAlignment="Center" VerticalAlignment="Bottom"
                       Grid.Row="1" Grid.Column="0">
-                <Grid>
-                    <ItemsControl x:Name="CourtsControl" ItemsSource="{Binding Courts}" ItemTemplate="{StaticResource CourtControlTemplate}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid IsItemsHost="True" Columns="{Binding NumColumns}" Rows="{Binding NumRows}"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-                </Grid>
+
+                <ItemsControl x:Name="CourtsControl" ItemsSource="{Binding Courts}" ItemTemplate="{StaticResource CourtControlTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid IsItemsHost="True" Columns="{Binding NumColumns}" Rows="{Binding NumRows}"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+
             </ScrollViewer>
             <Grid Grid.Column="1" Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="0.15*"/>
-                    <RowDefinition Height="0.85*"/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="0.1*"/>
+                    <RowDefinition Height="0.8*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="Queue" HorizontalAlignment="Center" FontSize="48" Margin="0 0 15 0"/>
-                <ScrollViewer Grid.Row="1" Margin="0 0 5 0">
+                <Label Grid.Row="0" Content="Queue" HorizontalAlignment="Center" FontSize="50" Margin="0 0 15 0" VerticalAlignment="Top"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="E.T.A.:" FontSize="42" Margin="60 0 0 0" Grid.Column="0" Foreground="White"/>
+                    <Label Content="Binding" FontSize="42" Grid.Column="1" Foreground="White"/>
+                </Grid>
+                <ScrollViewer Grid.Row="2" Margin="0 0 5 0">
                     <!--ItemsSource is set in code-behind-->
-                    <ItemsControl x:Name="QueueList" ItemTemplate="{StaticResource GroupTemplate}" Background="White" Margin="10 0 0 0">
+                    <ItemsControl x:Name="QueueList" ItemTemplate="{StaticResource GroupTemplate}" Background="WhiteSmoke" Margin="10 0 0 0">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center"/>
@@ -48,7 +57,6 @@
                     </ItemsControl>
                 </ScrollViewer>
             </Grid>
-            
         </Grid>
     </Viewbox>
 </UserControl>
