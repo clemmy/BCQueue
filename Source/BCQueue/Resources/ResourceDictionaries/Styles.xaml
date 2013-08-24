@@ -3,6 +3,8 @@
                     xmlns:local="clr-namespace:BCQueue;assembly=BCQueue"
                     xmlns:resources="clr-namespace:BCQueue.Resources"
                     xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop">
+    <resources:Converter x:Key="SkillLeveltoColourCoverter"/>
+
     <!--Generic Styles Start-->
     <Style TargetType="Label">
         <Setter Property="FontFamily" Value="Agency FB"/>
@@ -162,7 +164,7 @@
         <Setter Property="FontFamily" Value="Sergoe UI"/>
     </Style>
 
-
+    <!--Style for timer button on a court in ViewActiveGamesView.xaml-->
     <Style x:Key="timerButton" TargetType="Button">
         <Setter Property="Template">
             <Setter.Value>
@@ -200,10 +202,50 @@
         </UserControl>
     </DataTemplate>
 
+    <!--Data Template for a member in a team of players-->
+    <DataTemplate x:Key="MemberTemplate">
+        <Grid Width="170" Height="40" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.15*"/>
+                <ColumnDefinition Width="0.85*"/>
+            </Grid.ColumnDefinitions>
+            <Rectangle Fill="#403B3C" Stroke="Black" StrokeThickness="2" RadiusX="5" RadiusY="5" Height="40" Width="170" Grid.ColumnSpan="2"/>
+            <Viewbox Grid.Column="1">
+                <Label Name="MyLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding FullName}" FontFamily="Agency FB" 
+                           FontSize="30" Foreground="White"/>
+            </Viewbox>
+            <Ellipse Fill="{Binding SkillLevel, Converter={StaticResource SkillLeveltoColourCoverter},Mode=OneWay}" Height="10" Width="10" 
+                         VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+    </DataTemplate>
+
+    <!--Data Template for a "team" of players, which is in a "group" of players-->
+    <DataTemplate x:Key="TeamTemplate">
+        <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource MemberTemplate}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+    </DataTemplate>
+
+    <!--Data Template for a "group" of players on the queue list in ViewActiveGames.xaml-->
+    <DataTemplate x:Key="GroupTemplate">
+        <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource TeamTemplate}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Columns="2"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+        </ItemsControl>
+
+    </DataTemplate>
+
     <!--Start: For use in the AddToQueue.xaml-->
 
     <!--Start: Makes a ListBox's appearance mirror that of an ItemsControl-->
-    
+
     <!--needed for Windows 8-->
     <Style x:Key="ItemsControlBehaviour" TargetType="ListBoxItem">
         <Style.Triggers>
@@ -218,8 +260,6 @@
         </Style.Triggers>
     </Style>
     <!--End: ListBox's appearance mirroring that of an ItemsControl-->
-
-    <resources:Converter x:Key="SkillLeveltoColourCoverter"/>
 
     <DataTemplate x:Key="PlayerTemplate">
         <Grid Width="250" Height="50" Margin="5">
@@ -236,8 +276,8 @@
                          VerticalAlignment="Center" HorizontalAlignment="Center"/>
         </Grid>
     </DataTemplate>
-   
 
+    <!--Style for workaround "canvas" style drag-into box-->
     <Style TargetType="ListBox" x:Key="AvailableForDragInto">
         <Setter Property="ItemTemplate" Value="{StaticResource PlayerTemplate}"/>
         <Setter Property="dd:DragDrop.IsDragSource" Value="True"/>
@@ -274,10 +314,12 @@
     <ItemsPanelTemplate x:Key="WrapPanelTemplate">
         <WrapPanel/>
     </ItemsPanelTemplate>
+
     <ItemsPanelTemplate x:Key="StackPanelTemplate">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </ItemsPanelTemplate>
-    
+
+    <!--Style for AddToQueue Button-->
     <Style TargetType="Button" x:Key="AddButton" BasedOn="{StaticResource RemoveControlTemplate}">
         <Setter Property="Background">
             <Setter.Value>
@@ -288,4 +330,5 @@
         <Setter Property="Cursor" Value="Hand"/>
     </Style>
     <!--End: For use in the AddToQueue.xaml-->
+
 </ResourceDictionary>

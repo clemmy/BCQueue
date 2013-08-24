@@ -130,6 +130,7 @@ namespace BCQueue.ViewModels.MainMenuVM
                 Player3.Clear();
                 Player4.Clear();
                 QueueList.Add(group);
+                MessageBox.Show("Successfully added to queue!");
             }
             else
             {

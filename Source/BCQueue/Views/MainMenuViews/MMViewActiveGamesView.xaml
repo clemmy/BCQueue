@@ -9,8 +9,8 @@
     <Viewbox Margin="20 0 0 20">
         <Grid Height="768" Width="1366">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="0.2*"/>
@@ -28,7 +28,6 @@
                                 <UniformGrid IsItemsHost="True" Columns="{Binding NumColumns}" Rows="{Binding NumRows}"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                        
                     </ItemsControl>
                 </Grid>
             </ScrollViewer>
@@ -37,11 +36,15 @@
                     <RowDefinition Height="0.15*"/>
                     <RowDefinition Height="0.85*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="Queue" HorizontalAlignment="Left" FontSize="48" Margin="30 0 0 0"/>
-                <ScrollViewer Grid.Row="1">
+                <Label Grid.Row="0" Content="Queue" HorizontalAlignment="Center" FontSize="48" Margin="0 0 15 0"/>
+                <ScrollViewer Grid.Row="1" Margin="0 0 5 0">
                     <!--ItemsSource is set in code-behind-->
-                    <ItemsControl x:Name="QueueList">
-                        
+                    <ItemsControl x:Name="QueueList" ItemTemplate="{StaticResource GroupTemplate}" Background="White" Margin="10 0 0 0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Vertical" HorizontalAlignment="Center"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
                     </ItemsControl>
                 </ScrollViewer>
             </Grid>
