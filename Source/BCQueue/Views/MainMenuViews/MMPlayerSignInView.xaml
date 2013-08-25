@@ -14,7 +14,7 @@
             </Grid.RowDefinitions>
             <Image Source="/BCQueue;component/Resources/Images/Titles/signin.png" Grid.Row="0" HorizontalAlignment="Left"
                    Margin="10 20 0 0" VerticalAlignment="Center"/>
-            <Label Content="Tap on a member to sign in or out." FontSize="44" Grid.Row="1" VerticalAlignment="Center"
+            <Label Content="Tap to sign in or out." FontSize="44" Grid.Row="1" VerticalAlignment="Center"
                    Margin="15 0 0 0"/>
             <ScrollViewer Grid.Row="2" Background="White" Margin="15" VerticalScrollBarVisibility="Auto">
                 <!--Note: DataContext set in code-behind-->

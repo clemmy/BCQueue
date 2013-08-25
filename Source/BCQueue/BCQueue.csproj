@@ -64,6 +64,9 @@
     <Compile Include="Models\Court.cs" />
     <Compile Include="Resources\Converter.cs" />
     <Compile Include="Resources\Extensions.cs" />
+    <Compile Include="Resources\ResourceDictionaries\Styles.xaml.cs">
+      <DependentUpon>Styles.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Splash.xaml.cs">
       <DependentUpon>Splash.xaml</DependentUpon>
     </Compile>

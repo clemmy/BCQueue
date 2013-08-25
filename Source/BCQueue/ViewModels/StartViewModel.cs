@@ -58,7 +58,7 @@ namespace BCQueue.ViewModels
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members[7].FirstName = "ike";
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members[7].LastName = "ma";
 
-            (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.NumColumns = 4;
+            (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.NumColumns = 3;
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.NumRows = 3;
             for (int i = 1; i <= (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.NumCourts; i++)
             {

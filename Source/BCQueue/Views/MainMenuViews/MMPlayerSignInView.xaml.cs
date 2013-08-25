@@ -45,6 +45,5 @@ namespace BCQueue.Views.MainMenuViews
             }
         }
 
-        
     }
 }
