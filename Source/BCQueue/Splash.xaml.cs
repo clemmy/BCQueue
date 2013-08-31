@@ -16,9 +16,9 @@ namespace BCQueue
     /// <summary>
     /// Interaction logic for splash.xaml
     /// </summary>
-    public partial class splash : Window
+    public partial class Splash : Window
     {
-        public splash()
+        public Splash()
         {
             InitializeComponent();
         }

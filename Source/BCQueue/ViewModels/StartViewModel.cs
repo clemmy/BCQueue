@@ -38,7 +38,7 @@ namespace BCQueue.ViewModels
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members.Add(new Member());
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members[1].FirstName = "Mustaqeem";
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members[1].LastName = "Khowaja";
-            (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members[1].AboutMe = "Hi, I love FF6.";
+            (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members[1].AboutMe = "Hi, I love FF6. fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffaaaaaaaaaaaaaaaaaaaaaaaaaaaadsfsasdfsafsfsasafsfsasfsfssfsfsfsfsafsaf";
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members.Add(new Member());
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members[2].FirstName = "Joshua";
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members[2].LastName = "Fontana";
@@ -57,6 +57,7 @@ namespace BCQueue.ViewModels
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members.Add(new Member());
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members[7].FirstName = "ike";
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members[7].LastName = "ma";
+            (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Members[7].SkillLevel = BCQueue.Member.sl.Tournament;
 
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.NumColumns = 3;
             (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.NumRows = 3;
@@ -64,8 +65,7 @@ namespace BCQueue.ViewModels
             {
                 (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Courts.Add(new Court(i));
             }
-            foreach (Court x in (App.Current.Resources["Locator"] as ViewModelLocator).Main.MyProfile.Courts)
-                x.IsCourtActive = true;
+            MainViewModel._mMViewActiveGamesVM.IsWaiting = true;
         }
 
         /// <summary>
@@ -78,12 +78,10 @@ namespace BCQueue.ViewModels
             //Temporary for testing purposes
 
             temp();
-             
+
+
             //End temp
 
-            
-            
-            
         }
 
     }

@@ -11,6 +11,7 @@ namespace BCQueue
 {
     /// <summary>
     /// A member who is registered in a badminton club
+    /// TODO: Move this class to ViewModels
     /// </summary>
     public class Member:ViewModelBase,INotifyPropertyChanged
     {

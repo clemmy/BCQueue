@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using System.Windows;
 using System.Windows.Controls;
 using BCQueue.Resources;
+using Xceed.Wpf.Toolkit;
 
 namespace BCQueue.ViewModels.MainMenuVM
 {
@@ -42,7 +43,7 @@ namespace BCQueue.ViewModels.MainMenuVM
                 }
                 else
                 {
-                    MessageBox.Show("busy!");
+                    Xceed.Wpf.Toolkit.MessageBox.Show("Unable to sign this player off.\nMake sure the player is not on the queue list or participating in active games.", "Busy Player Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             (App.Current.Resources["Locator"] as BCQueue.ViewModels.ViewModelLocator).Main.MyProfile.Members.Sort((x, y) => x.FullName.CompareTo(y.FullName));

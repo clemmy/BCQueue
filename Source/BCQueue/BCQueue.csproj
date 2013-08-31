@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{319BB6AD-1D13-4B88-8CB9-8ED99623EBAC}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BCQueue</RootNamespace>
     <AssemblyName>BCQueue</AssemblyName>
@@ -39,6 +39,9 @@
   <PropertyGroup>
     <ApplicationIcon>Resources\Images\General\Icon\icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=4.1.24.16215, Culture=neutral, PublicKeyToken=3e875cdb3903c512, processorArchitecture=MSIL" />
     <Reference Include="GalaSoft.MvvmLight.Extras, Version=4.1.24.16215, Culture=neutral, PublicKeyToken=48c5515dce1bf64d, processorArchitecture=MSIL" />
@@ -62,7 +65,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Models\Court.cs" />
-    <Compile Include="Resources\Converter.cs" />
+    <Compile Include="Resources\Converters.cs" />
     <Compile Include="Resources\Extensions.cs" />
     <Compile Include="Resources\ResourceDictionaries\Styles.xaml.cs">
       <DependentUpon>Styles.xaml</DependentUpon>
@@ -76,6 +79,7 @@
     <Compile Include="ViewModels\CreateProfileVM\CPSecondViewModel.cs" />
     <Compile Include="ViewModels\CreateProfileVM\CPThirdViewModel.cs" />
     <Compile Include="ViewModels\CreateProfileVM\CPViewModelLocator.cs" />
+    <Compile Include="ViewModels\GameResultsViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\MainMenuVM\MMAboutVM.cs" />
     <Compile Include="ViewModels\MainMenuVM\MMAddToQueueVM.cs" />
@@ -100,6 +104,9 @@
     </Compile>
     <Compile Include="Views\CreateProfileViews\CPThirdView.xaml.cs">
       <DependentUpon>CPThirdView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameResultsWindow.xaml.cs">
+      <DependentUpon>GameResultsWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -164,6 +171,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CreateProfileViews\CPThirdView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GameResultsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -267,6 +278,10 @@
       <Project>{0c6674cc-6d49-414a-9b41-d4e175028ffb}</Project>
       <Name>GongSolutions.Wpf.DragDrop %28NET4%29</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Xceed.Wpf.Toolkit\Xceed.Wpf.Toolkit.csproj">
+      <Project>{72e591d6-8f83-4d8c-8f67-9c325e623234}</Project>
+      <Name>Xceed.Wpf.Toolkit</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Titles\about.png" />
@@ -278,6 +293,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Main Menu\InsideViews\AddToQueue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Main Menu\InsideViews\SkipButton.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

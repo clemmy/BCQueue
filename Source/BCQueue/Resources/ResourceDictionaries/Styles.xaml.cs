@@ -26,23 +26,7 @@ namespace BCQueue.Resources.ResourceDictionaries
         /// <param name="e"></param>
         private void stopTheTimer(object sender, RoutedEventArgs e)
         {
-            Visual button = (Visual)sender;
-            var parent = VisualTreeHelper.GetParent(button);
-            if (!(((parent as Grid).Children[1]) is TextBlock))
-                return; //The following lines of code run assuming that the sender is a TimerTextBlock, thus will crash the program if sender is not of that type
-            TextBlock timer = (parent as Grid).Children[1] as TextBlock;
-            (timer.DataContext as Court).StopTimer();
+            BCQueue.ViewModels.MainViewModel._mMViewActiveGamesVM.stopTheTimerExecute(sender, e);
         }
-
-        /// <summary>
-        /// Sets textblock animation to indicate that time is up
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TimeUp(object sender, EventArgs e)
-        {
-        }
-
-
     }
 }

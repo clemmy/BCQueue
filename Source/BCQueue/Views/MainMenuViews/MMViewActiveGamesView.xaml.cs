@@ -32,14 +32,44 @@ namespace BCQueue.Views.MainMenuViews
                 
             }
             QueueList.ItemsSource = BCQueue.ViewModels.MainViewModel._mMAddToQueueVM.QueueList;
+            QueueList.DataContext = BCQueue.ViewModels.MainViewModel._mMViewActiveGamesVM;
+
+            //Court.TimeUp += ShowTimeUpAnimation;
+
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        #region Commented Out
+
+        /*
+        /// <summary>
+        /// An event handler for when the TimeUp event is raised. 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void ShowTimeUpAnimation(object sender, TimeUpEventArgs e)
         {
-            MessageBox.Show(sender.GetType().ToString());
-            MessageBox.Show(((FrameworkElement)sender).Parent.GetType().ToString());
-            //Call method here
-            //give the button a better name...
+            Court x = null;
+            foreach (Court court in CourtsControl.Items)
+            {
+                if (court.CourtNumber == e.CourtNumber)
+                {
+                    x = court;
+                    break;
+                }
+            }
+            if (x != null)
+            {
+                var item = CourtsControl.ItemContainerGenerator.ContainerFromItem(x);
+                var template = App.Current.Resources["CourtControlTemplate"] as DataTemplate;
+                var textblock = template.FindName("TimerTextBlock", item as FrameworkElement);
+                (textblock as TextBlock).Background = Brushes.Yellow;
+                var usercontrol = template.FindName("CourtControl", item as FrameworkElement);
+                (usercontrol as UserControl).Background = Brushes.Red;
+            }
         }
+         */
+
+        #endregion
     }
 }

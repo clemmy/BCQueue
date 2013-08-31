@@ -1,0 +1,108 @@
+﻿<Window x:Class="BCQueue.Views.GameResultsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="GameResultsWindow" Height="270" Width="450" WindowStyle="None" WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize">
+    <!--This Window's datacontext is set in codebehind-->
+    <Window.Resources>
+        <DataTemplate x:Key="GameResultsPlayerTemplate">
+            <Grid Width="120" Height="30" Margin="5">
+                <Rectangle Fill="#403B3C" Stroke="Black" StrokeThickness="2" RadiusX="6" RadiusY="6" Height="30" Width="120" Grid.ColumnSpan="2"/>
+                <Viewbox Grid.Column="1">
+                    <Label HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding FullName}" FontFamily="Agency FB" 
+                           FontSize="24" Foreground="White"/>
+                </Viewbox>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+    <Viewbox>
+        <Grid Background="#403B3C" Height="180" Width="300">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.08*"/>
+                <RowDefinition Height="0.92*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Game Results" Foreground="White" Margin="3 0 0 0" VerticalAlignment="Center" FontFamily="Calibri" FontSize="10"/>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.17*"/>
+                    <RowDefinition Height="0.83*"/>
+                </Grid.RowDefinitions>
+                <!--"Title" Pane-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.75*"/>
+                        <ColumnDefinition Width="0.25*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Select the winning team." HorizontalAlignment="Right" Foreground="White" FontSize="24" Grid.Column="0"/>
+                    <Button Content="Skip" Grid.Column="1" Margin="27 3 0 3" Cursor="Hand" Click="SkipButton_Click">
+                        <Button.Background>
+                            <ImageBrush ImageSource="/BCQueue;component/Resources/Images/Main Menu/InsideViews/SkipButton.png"/>
+                        </Button.Background>
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Border Background="{TemplateBinding Background}"/>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+                <!--"Content" Pane-->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Margin="5" Command="{Binding Team1WonCommand}" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <UserControl Background="Gray">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="0.25*"/>
+                                            <RowDefinition Height="0.75*"/>
+                                        </Grid.RowDefinitions>
+                                        <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="2"/>
+                                        <TextBlock Text="Team 1" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Agency FB" Foreground="White"
+                                               FontSize="22"/>
+                                        <ItemsControl ItemsSource="{Binding Team1}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                      ItemTemplate="{StaticResource GameResultsPlayerTemplate}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel VerticalAlignment="Center" Orientation="Vertical"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                        </ItemsControl>
+                                    </Grid>
+                                </UserControl>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                    <Button Grid.Column="1" Margin="5" Command="{Binding Team2WonCommand}" Cursor="Hand">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <UserControl Background="Gray">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="0.25*"/>
+                                            <RowDefinition Height="0.75*"/>
+                                        </Grid.RowDefinitions>
+                                        <Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="2"/>
+                                        <TextBlock Text="Team 2" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Agency FB" Foreground="White"
+                                               FontSize="22"/>
+                                        <ItemsControl ItemsSource="{Binding Team2}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                      ItemTemplate="{StaticResource GameResultsPlayerTemplate}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel VerticalAlignment="Center" Orientation="Vertical"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                        </ItemsControl>
+                                    </Grid>
+                                </UserControl>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>

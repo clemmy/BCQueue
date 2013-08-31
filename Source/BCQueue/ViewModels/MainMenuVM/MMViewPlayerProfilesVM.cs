@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using System.Windows;
 using System.ComponentModel;
+using Xceed.Wpf.Toolkit;
 
 namespace BCQueue.ViewModels.MainMenuVM
 {
@@ -127,9 +128,11 @@ namespace BCQueue.ViewModels.MainMenuVM
                     GamesLostLabelText = (App.Current.Resources["Locator"] as BCQueue.ViewModels.ViewModelLocator).Main.MyProfile.Members[i].GamesLost.ToString();
                     TotalGamesLabelText = (App.Current.Resources["Locator"] as BCQueue.ViewModels.ViewModelLocator).Main.MyProfile.Members[i].TotalGames.ToString();
                     AboutMeText = (App.Current.Resources["Locator"] as BCQueue.ViewModels.ViewModelLocator).Main.MyProfile.Members[i].AboutMe;
+                    return;
                     #endregion
                 }
             }
+            Xceed.Wpf.Toolkit.MessageBox.Show("The specified player cannot be found!", "Player not found", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
     }
 }

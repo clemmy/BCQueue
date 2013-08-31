@@ -2,16 +2,75 @@
                     x:ClassModifier="public"
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                     xmlns:local="clr-namespace:BCQueue;assembly=BCQueue"
                     xmlns:resources="clr-namespace:BCQueue.Resources"
-                    xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop">
-    <resources:Converter x:Key="SkillLeveltoColourCoverter"/>
+                    xmlns:dd="clr-namespace:GongSolutions.Wpf.DragDrop;assembly=GongSolutions.Wpf.DragDrop"
+                    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+                    >
+
+    <resources:Converters x:Key="SkillLeveltoColourCoverter"/>
+    <resources:IsFirstItemInCollectionConverter x:Key="IsFirstItemInCollectionConverter"/>
+    <Storyboard x:Key="blinkAnimation" >
+        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                      Storyboard.TargetName="TimerTextBlock" RepeatBehavior="Forever">
+            <ColorAnimationUsingKeyFrames.KeyFrames>
+                <DiscreteColorKeyFrame KeyTime="0:0:0" Value="Yellow"/>
+                <DiscreteColorKeyFrame KeyTime="0:0:0.5" Value="Black"/>
+                <DiscreteColorKeyFrame KeyTime="0:0:1" Value="Yellow"/>
+
+            </ColorAnimationUsingKeyFrames.KeyFrames>
+        </ColorAnimationUsingKeyFrames>
+    </Storyboard>
 
     <!--Generic Styles Start-->
+    <Style TargetType="{x:Type xctk:MessageBox}">
+        <Style.Resources>
+            <Style TargetType="Button" x:Key="GrayButton">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="Gray" Padding="5 3 5 3">
+                                <ContentPresenter TextBlock.Foreground="White" HorizontalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style.Resources>
+        <Setter Property="TextBlock.FontFamily" Value="Agency FB"/>
+        <Setter Property="TextBlock.FontSize" Value="16"/>
+        <Setter Property="Background" Value="#403B3C"/>
+        <Setter Property="CaptionForeground" Value="White" />
+        <Setter Property="CaptionShadowBrush" Value="Gray"/>
+        <Setter Property="WindowBackground" Value="Gray"/>
+        <Setter Property="WindowBorderBrush" Value="Gray"/>
+        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="ButtonRegionBackground" Value="#403B3C"/>
+        <Setter Property="OkButtonStyle" Value="{StaticResource GrayButton}"/>
+        <Setter Property="WindowInactiveBackground" Value="Gray"/>
+        <Setter Property="CloseButtonStyle">
+            <Setter.Value>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate/>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <!--Overwrote controltemplate to make it invisible-->
+    </Style>
+
     <Style TargetType="Label">
         <Setter Property="FontFamily" Value="Agency FB"/>
     </Style>
     <Style TargetType="TextBox">
+        <Setter Property="FontFamily" Value="Agency FB"/>
+    </Style>
+    <Style TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Agency FB"/>
     </Style>
     <!--Generic Styles End-->
@@ -166,52 +225,14 @@
         <Setter Property="FontFamily" Value="Sergoe UI"/>
     </Style>
 
-    <!--Style for timer button on a court in ViewActiveGamesView.xaml-->
-    <Style x:Key="timerButton" TargetType="Button">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <UserControl Background="{TemplateBinding Background}">
-                        <ContentPresenter HorizontalAlignment="Center"/>
-                    </UserControl>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Cursor" Value="Hand"/>
-    </Style>
-
-    <!--Data Template for the Courts in ViewActiveGamesView.xaml-->
-    <DataTemplate x:Key="CourtControlTemplate">
-        <UserControl Width="300" Height="300" Background="#CADEE3" x:Name="CourtControl">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="4.4*"/>
-                    <RowDefinition Height="4.6*"/>
-                    <RowDefinition Height="3*"/>
-                    <RowDefinition Height="3*"/>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" Content="{Binding CourtNumber}" HorizontalAlignment="Center"
-                                           VerticalAlignment="Center" FontSize="48"/>
-                <TextBlock Grid.Row="2" Background="White" Text="{Binding TimeLeft}"
-                                               HorizontalAlignment="Center" FontSize="36"
-                                               VerticalAlignment="Center" Padding="10 0 10 0"/>
-                <Button Style="{StaticResource timerButton}" Grid.Row="3" Content="Finish"
-                                            VerticalAlignment="Center" FontSize="36"
-                                            Background="Gray" Width="{Binding ElementName=CourtControl, Path=ActualWidth}"
-                                            HorizontalAlignment="Center" Click="stopTheTimer"/>
-                <Border Grid.RowSpan="4" BorderBrush="White" BorderThickness="1 0 0 0"/>
-            </Grid>
-        </UserControl>
-    </DataTemplate>
-
     <!--Data Template for a member in a team of players-->
     <DataTemplate x:Key="MemberTemplate">
-        <Grid Width="180" Height="40" Margin="5">
+        <Grid Width="180" Height="40" Margin="3 1 3 1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.15*"/>
                 <ColumnDefinition Width="0.85*"/>
             </Grid.ColumnDefinitions>
-            <Rectangle Fill="#403B3C" Stroke="Black" StrokeThickness="2" RadiusX="5" RadiusY="5" Height="40" Width="180" Grid.ColumnSpan="2"/>
+            <Rectangle Fill="#403B3C" Stroke="Black" StrokeThickness="2" RadiusX="5" RadiusY="5" Height="40" Width="178" Grid.ColumnSpan="2"/>
             <Viewbox Grid.Column="1">
                 <Label Name="MyLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Content="{Binding FullName}" FontFamily="Agency FB" 
                            FontSize="30" Foreground="White"/>
@@ -234,7 +255,8 @@
 
     <!--Data Template for a "group" of players on the queue list in ViewActiveGames.xaml-->
     <DataTemplate x:Key="GroupTemplate">
-        <Border Background="#BA6ED4" Margin="0 0 0 15">
+        <Border Grid.Row="0" Padding="0 3 0 3" CornerRadius="6" BorderBrush="Black" BorderThickness="4" Background="#BA6ED4" 
+                    Margin="0 0 0 10" >
             <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource TeamTemplate}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -243,8 +265,190 @@
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
         </Border>
-        
     </DataTemplate>
+
+    <!--Data Template for a "group" of players on the queue list with index 0 in ViewActiveGames.xaml-->
+    <DataTemplate x:Key="FirstGroupTemplate">
+        <DataTemplate.Resources>
+            <Style TargetType="Button" x:Key="SessionStartButton">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate>
+                            <Grid>
+                                <Rectangle Fill="#53ED2D" Stroke="Black" StrokeThickness="2" RadiusX="10" RadiusY="10" Margin="5 2 5 5"/>
+                                <Label HorizontalAlignment="Center" VerticalAlignment="Center" Content="Start" FontFamily="Agency FB" 
+                           FontSize="26" Foreground="White"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Cursor" Value="Hand"/>
+            </Style>
+        </DataTemplate.Resources>
+        <Border Grid.Row="0" Padding="0 5 0 0" CornerRadius="6" BorderBrush="Black" BorderThickness="4" Background="#BA6ED4" 
+                    Margin="0 0 0 10" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.6*"/>
+                    <RowDefinition Height="0.4*"/>
+                </Grid.RowDefinitions>
+                <ItemsControl ItemsSource="{Binding}" ItemTemplate="{StaticResource TeamTemplate}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="2"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+                <Button Content="Start" Grid.Row="1" Style="{StaticResource SessionStartButton}"
+                    Command="{Binding DataContext.StartSessionCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"/>
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+    <!-- Queue Template that has a distinct template for the first group on the list-->
+    <DataTemplate x:Key="QueueDisplayTemplate">
+        <ContentPresenter x:Name="GroupViewPresenter"
+                          Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"
+                          ContentTemplate="{StaticResource GroupTemplate}"/>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, 
+         Converter= {StaticResource IsFirstItemInCollectionConverter}}"
+                         Value="True">
+                <Setter TargetName="GroupViewPresenter"
+                        Property="ContentTemplate"
+                        Value="{StaticResource FirstGroupTemplate}"/>
+            </DataTrigger>
+            <!--make this a multidata trigger to include when ETA = 0?-->
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+    <!--Style for timer button on a court in ViewActiveGamesView.xaml-->
+    <Style x:Key="timerButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <UserControl Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center"/>
+                    </UserControl>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Cursor" Value="Hand"/>
+    </Style>
+
+    <!--Data Template for the Courts in ViewActiveGamesView.xaml-->
+
+    <DataTemplate x:Key="CourtInUseTemplate">
+        <UserControl Width="300" Height="300" Background="#CADEE3" x:Name="CourtControl">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4.4*"/>
+                    <RowDefinition Height="4.6*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="{Binding CourtNumber}" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" FontSize="48"/>
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding Group}">
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl>
+                <TextBlock Grid.Row="2" Background="White" Text="{Binding TimeLeft}"
+                                               HorizontalAlignment="Center" FontSize="36"
+                                               VerticalAlignment="Center" Padding="10 0 10 0"
+                                               x:Name="TimerTextBlock" Width="250" TextAlignment="Center" FontFamily="Calibri"/>
+                <Button Style="{StaticResource timerButton}" Grid.Row="3" Content="Finish"
+                                            VerticalAlignment="Center" FontSize="48"
+                                            Background="Gray" Width="{Binding ElementName=CourtControl, Path=ActualWidth}"
+                                            HorizontalAlignment="Center" Click="stopTheTimer" Height="60"/>
+                <Border Grid.RowSpan="4" BorderBrush="White" BorderThickness="1 0 0 1"/>
+            </Grid>
+        </UserControl>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CourtAvailableTemplate">
+        <Border Height="300" Width="300" Background="#67ED1A" BorderBrush="White" BorderThickness="1 0 0 1">
+            <TextBlock Text="This court is available" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="44"
+                       TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
+        </Border>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CourtOverdueTemplate">
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding CourtState}"
+                         Value="Overdue">
+                <DataTrigger.EnterActions>
+                    <BeginStoryboard>
+                        <StaticResource ResourceKey="blinkAnimation"/>
+                    </BeginStoryboard>
+                </DataTrigger.EnterActions>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+        <UserControl Width="300" Height="300" Background="Red" x:Name="CourtControl">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4.4*"/>
+                    <RowDefinition Height="4.6*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="{Binding CourtNumber}" HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" FontSize="48"/>
+                <Border></Border>
+                <TextBlock Grid.Row="2" Background="Yellow" Text="{Binding TimeLeft}"
+                                               HorizontalAlignment="Center" FontSize="36"
+                                               VerticalAlignment="Center" Padding="10 0 10 0"
+                                               x:Name="TimerTextBlock" Width="250" TextAlignment="Center" FontFamily="Calibri"/>
+                <Button Style="{StaticResource timerButton}" Grid.Row="3" Content="Finish"
+                                            VerticalAlignment="Center" FontSize="36"
+                                            Background="Gray" Width="{Binding ElementName=CourtControl, Path=ActualWidth}"
+                                            HorizontalAlignment="Center" Click="stopTheTimer"/>
+                <Border Grid.RowSpan="4" BorderBrush="White" BorderThickness="1 0 0 1"/>
+            </Grid>
+        </UserControl>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CourtInactiveTemplate">
+        <Border Height="300" Width="300" Background="#CBCFC8" BorderBrush="White" BorderThickness="1 0 0 1">
+            <TextBlock Text="This court is unavailable" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="44"
+                       TextWrapping="WrapWithOverflow" TextAlignment="Center"/>
+        </Border>
+    </DataTemplate>
+
+    <!--Court Template which switches through different templates depending on the Court State-->
+    <DataTemplate x:Key="CourtTemplate">
+        <ContentPresenter x:Name="CourtViewPresenter"
+                          Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"/>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding CourtState, UpdateSourceTrigger=PropertyChanged}"
+                         Value="InUse">
+                <Setter TargetName="CourtViewPresenter"
+                        Property="ContentTemplate"
+                        Value="{StaticResource CourtInUseTemplate}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding CourtState, UpdateSourceTrigger=PropertyChanged}"
+                         Value="Available">
+                <Setter TargetName="CourtViewPresenter"
+                        Property="ContentTemplate"
+                        Value="{StaticResource CourtAvailableTemplate}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding CourtState, UpdateSourceTrigger=PropertyChanged}"
+                         Value="Overdue">
+                <Setter TargetName="CourtViewPresenter"
+                        Property="ContentTemplate"
+                        Value="{StaticResource CourtOverdueTemplate}"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding CourtState, UpdateSourceTrigger=PropertyChanged}"
+                         Value="Inactive">
+                <Setter TargetName="CourtViewPresenter"
+                        Property="ContentTemplate"
+                        Value="{StaticResource CourtInactiveTemplate}"/>
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+
+
 
     <!--Start: For use in the AddToQueue.xaml-->
 

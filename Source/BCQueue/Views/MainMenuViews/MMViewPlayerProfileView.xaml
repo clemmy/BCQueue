@@ -36,7 +36,7 @@
                             Height="{Binding ElementName=NameBox, Path=ActualHeight}" 
                             Width="{Binding Path=ActualHeight, RelativeSource={RelativeSource Self}}" 
                             Margin="0 10 0 0" Style="{StaticResource RemoveControlTemplate}"
-                            Command="{Binding SearchMembersCommand}"/>
+                            Command="{Binding SearchMembersCommand}" Cursor="Hand"/>
                 </Grid>
                 
                 
@@ -74,7 +74,7 @@
                 <StackPanel>
                     <Label Content="About Me: " Margin="160 0 0 0" FontSize="45"/>
                     <ScrollViewer Margin="150 10 300 0">
-                        <TextBlock Height="150" FontSize="18" FontFamily="Agency FB" Background="White" Text="{Binding AboutMeText}"/>
+                        <TextBlock Height="150" FontSize="18" FontFamily="Agency FB" Background="White" Text="{Binding AboutMeText}" TextWrapping="Wrap"/>
                     </ScrollViewer>
                 </StackPanel>
             </Grid>

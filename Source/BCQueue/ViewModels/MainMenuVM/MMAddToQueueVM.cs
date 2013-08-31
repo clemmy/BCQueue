@@ -7,6 +7,7 @@ using DragDrop = GongSolutions.Wpf.DragDrop.DragDrop;
 using GongSolutions.Wpf.DragDrop;
 using System.Windows.Media;
 using System.Windows.Controls;
+using Xceed.Wpf.Toolkit;
 
 
 namespace BCQueue.ViewModels.MainMenuVM
@@ -112,8 +113,16 @@ namespace BCQueue.ViewModels.MainMenuVM
         }
         #endregion
 
+        
+
+        /// <summary>
+        /// Adds a group of 2 teams onto the queue list
+        /// </summary>
         public ICommand AddToQueueCommand { get; private set; }
 
+        /// <summary>
+        /// Execute method for AddToQueueCommand
+        /// </summary>
         private void ExecuteAddToQueueCommand()
         {
             ObservableCollection<Member> temp = new ObservableCollection<Member>();
@@ -124,17 +133,22 @@ namespace BCQueue.ViewModels.MainMenuVM
                 ObservableCollection<ObservableCollection<Member>> group = new ObservableCollection<ObservableCollection<Member>>();//add both
                 group.Add(GetTeam1());
                 group.Add(GetTeam2());
-                
-                Player1.Clear();
+
+                #region Clear the DragIn boxes in the GUI
+                Player1.Clear(); 
                 Player2.Clear();
                 Player3.Clear();
                 Player4.Clear();
+                #endregion
+
                 QueueList.Add(group);
-                MessageBox.Show("Successfully added to queue!");
+                Xceed.Wpf.Toolkit.MessageBox.Show("Successfully added to queue!","Success", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+
             }
             else
             {
-                MessageBox.Show("A game must consist of either 2 or 4 players.");
+                Xceed.Wpf.Toolkit.MessageBox.Show("A game must consist of either 2 or 4 players.","Incorrect Team Size Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
         }
@@ -187,6 +201,7 @@ namespace BCQueue.ViewModels.MainMenuVM
             Player4 = new ObservableCollection<Member>();
             QueueList = new ObservableCollection<ObservableCollection<ObservableCollection<Member>>>();
             AddToQueueCommand = new RelayCommand(() => ExecuteAddToQueueCommand());
+
 
         }
     }
