@@ -51,7 +51,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Margin="5" Command="{Binding Team1WonCommand}" Cursor="Hand">
+                    <Button Grid.Column="0" Margin="5" Command="{Binding Team1WonCommand}" Cursor="Hand" >
                         <Button.Template>
                             <ControlTemplate>
                                 <UserControl Background="Gray">

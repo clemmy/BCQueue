@@ -18,7 +18,6 @@
                 <DiscreteColorKeyFrame KeyTime="0:0:0" Value="Yellow"/>
                 <DiscreteColorKeyFrame KeyTime="0:0:0.5" Value="Black"/>
                 <DiscreteColorKeyFrame KeyTime="0:0:1" Value="Yellow"/>
-
             </ColorAnimationUsingKeyFrames.KeyFrames>
         </ColorAnimationUsingKeyFrames>
     </Storyboard>
@@ -349,7 +348,7 @@
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" Content="{Binding CourtNumber}" HorizontalAlignment="Center"
                                            VerticalAlignment="Center" FontSize="48"/>
-                <ItemsControl Grid.Row="1" ItemsSource="{Binding Group}">
+                <ItemsControl Grid.Row="1" ItemsSource="{Binding}">
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                     </ItemsPanelTemplate>

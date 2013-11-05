@@ -27,7 +27,12 @@ namespace BCQueue.Views
         public GameResultsWindow(ObservableCollection<ObservableCollection<Member>> group)
         {
             InitializeComponent();
-            this.DataContext = new BCQueue.ViewModels.GameResultsViewModel(group);
+            BCQueue.ViewModels.GameResultsViewModel vm = new BCQueue.ViewModels.GameResultsViewModel(group);
+            this.DataContext = vm;
+
+            //Adds a definition for the close action
+            if (vm.CloseAction == null)
+                vm.CloseAction = new Action(() => this.Close());
         }
 
         /// <summary>

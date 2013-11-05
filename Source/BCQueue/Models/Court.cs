@@ -23,7 +23,7 @@ namespace BCQueue
         /// <summary>
         /// Represents a collection of the two teams of players who are currently on the court
         /// </summary>
-        public ObservableCollection<ObservableCollection<Member>> Group 
+        public ObservableCollection<ObservableCollection<Member>> Group
         {
             get { return _group; }
             set
@@ -59,7 +59,10 @@ namespace BCQueue
         {
             if (group != null)
             {
-                Group = group;
+                //Group = group;
+                Group.Clear();
+                Group.Add(group[0]);
+                Group.Add(group[1]);
                 return;
             }
             throw new ArgumentException("Group cannot be null");
@@ -133,7 +136,7 @@ namespace BCQueue
                 _dispatcherTimer.Stop();
                 SetTimeLeft(TimeSpan.Zero); //in the scenario where timer is stopped prematurely
                 _dispatcherTimer.Tick -= dispatcherTimer_Tick;
-            }        
+            }
         }
 
         /// <summary>
@@ -195,7 +198,7 @@ namespace BCQueue
         /// </summary>
         public string CourtState
         {
-            get {return _courtState;}
+            get { return _courtState; }
             set
             {
                 if (!((value == "Overdue") || (value == "Available") || (value == "Inactive") || (value == "InUse")))
@@ -221,7 +224,7 @@ namespace BCQueue
             get { return _dispatcherTimer.IsEnabled; }
         }
         #endregion
-        
+
 
         #region PropertyChanged event and event handler declaration/methods
         /// <summary>

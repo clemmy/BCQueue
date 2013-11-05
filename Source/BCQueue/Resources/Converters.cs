@@ -50,7 +50,6 @@ namespace BCQueue.Resources
         {
             DependencyObject item = (DependencyObject)value;
             ItemsControl ic = ItemsControl.ItemsControlFromItemContainer(item);
-            Console.WriteLine((ic.ItemContainerGenerator.IndexFromContainer(item) == 0).ToString());
             return (ic.ItemContainerGenerator.IndexFromContainer(item) == 0);
         }
 

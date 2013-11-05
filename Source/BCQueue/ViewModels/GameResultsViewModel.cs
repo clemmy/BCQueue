@@ -13,6 +13,11 @@ namespace BCQueue.ViewModels
     class GameResultsViewModel: ViewModelBase
     {
         /// <summary>
+        /// Defines an action that will close the GameResultsWindow
+        /// </summary>
+        public Action CloseAction { get; set; }
+
+        /// <summary>
         /// Represents the a team of members
         /// </summary>
         public ObservableCollection<Member> Team1 { get; set; }
@@ -36,7 +41,11 @@ namespace BCQueue.ViewModels
         /// </summary>
         private void Team1WonCommandExecute()
         {
-
+            foreach (Member m in Team1)
+                m.GamesWon += 1;
+            foreach (Member m in Team2)
+                m.GamesLost += 1;
+            CloseAction();
         }
 
         /// <summary>
@@ -44,7 +53,11 @@ namespace BCQueue.ViewModels
         /// </summary>
         private void Team2WonCommandExecute()
         {
-            Console.WriteLine("Team2 won!");
+            foreach (Member m in Team1)
+                m.GamesLost += 1;
+            foreach (Member m in Team2)
+                m.GamesWon += 1;
+            CloseAction();
         }
 
         /// <summary>
